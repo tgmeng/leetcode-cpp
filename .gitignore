@@ -1,0 +1,7 @@
+Makefile
+CMakeCache.txt
+*.cmake
+CMakeFiles/
+googletest-src/
+googletest-build/
+googletest-download/
