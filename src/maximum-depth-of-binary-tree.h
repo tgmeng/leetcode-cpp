@@ -1,4 +1,6 @@
+#pragma once
 #include <iostream>
+#include <algorithm>
 
 /**
  * Definition for a binary tree node.

@@ -1,3 +1,5 @@
+option(BUILD_OFFLINE "Build offline" OFF)
+
 cmake_minimum_required(VERSION 3.7.2)
 project (leetCode)
 
@@ -5,7 +7,6 @@ set(source_dir ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(target_dir ${CMAKE_CURRENT_SOURCE_DIR}/build)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${target_dir})
 
-option(BUILD_OFFLINE "Build offline" OFF)
 
 # Skip download & update?
 if(${BUILD_OFFLINE})
@@ -47,25 +48,24 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
     include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-include_directories("${source_dir}")
+file(GLOB headers RELATIVE "${source_dir}" "${source_dir}/*.test.h")
 
-file(GLOB HEADERS RELATIVE "${source_dir}" "${source_dir}/*.test.h")
-
-foreach(header_file ${HEADERS})
+foreach(header_file ${headers})
     set(CMAKE_CONFIGURABLE_FILE_CONTENT
         "${CMAKE_CONFIGURABLE_FILE_CONTENT}#include \"${header_file}\"\n")
 
     string(REPLACE ".test.h" "" file_name "${header_file}")
-
-    set(output_cpp "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cpp/${file_name}.cpp")
-
-    configure_file("${source_dir}/test-template.cpp.in"
-        "${output_cpp}"
-        @ONLY
-    )
-
-    add_executable(${file_name} "${output_cpp}")
-    target_link_libraries(${file_name} gtest_main)
-
-    unset(CMAKE_CONFIGURABLE_FILE_CONTENT)
 endforeach()
+
+set(test_file "run-tests.cpp")
+configure_file("${source_dir}/${test_file}.in"
+    "${source_dir}/${test_file}"
+    @ONLY
+)
+
+file(GLOB h_files "${source_dir}/*.h")
+
+add_executable(run-test "${source_dir}/${test_file}" "${h_files}")
+target_link_libraries(run-test gtest_main)
+
+unset(CMAKE_CONFIGURABLE_FILE_CONTENT)
