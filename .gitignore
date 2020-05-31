@@ -5,3 +5,6 @@ CMakeFiles/
 googletest-src/
 googletest-build/
 googletest-download/
+src/run-tests.cpp
+lib/
+*.pc

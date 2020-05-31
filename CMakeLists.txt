@@ -3,6 +3,8 @@ option(BUILD_OFFLINE "Build offline" OFF)
 cmake_minimum_required(VERSION 3.7.2)
 project (leetCode)
 
+set(CMAKE_CXX_STANDARD 17)
+
 set(source_dir ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(target_dir ${CMAKE_CURRENT_SOURCE_DIR}/build)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${target_dir})

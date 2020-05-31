@@ -1,8 +1,8 @@
 #pragma once
-#include "maximum-depth-of-binary-tree.h"
 #include <gtest/gtest.h>
+#include "./maximum-depth-of-binary-tree.h"
 
-TEST(MaximumDepthOfBinaryTree, Test) {
+TEST(BinaryTree, MaximumDepthOfBinaryTree) {
 	Solution sol;
 	int depth = sol.maxDepth(NULL);
 	EXPECT_EQ(depth, 0);
