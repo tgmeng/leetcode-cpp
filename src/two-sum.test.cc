@@ -1,7 +1,6 @@
-#pragma once
-#include "./two-sum.h"
 #include <gtest/gtest.h>
 #include <vector>
+#include "./two-sum.h"
 
 double getSum(std::vector<int> input, std::vector<int> list) {
   double sum = 0;

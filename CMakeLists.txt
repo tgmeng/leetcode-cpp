@@ -16,12 +16,10 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} CONFIGURE_DEPENDS "src/*.test.cc")
-file(GLOB_RECURSE HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} CONFIGURE_DEPENDS "src/*.h")
 
 include(GoogleTest)
 foreach (_sourceFile ${SOURCES})
     get_filename_component(_name ${_sourceFile} NAME_WE)
-    list(APPEND NAMES ${_name})
     add_executable(
             ${_name}
             ${_sourceFile}
