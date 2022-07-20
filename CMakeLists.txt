@@ -27,6 +27,7 @@ foreach (_sourceFile ${SOURCES})
     target_link_libraries(
             ${_name}
             gtest_main
+            gmock_main
     )
     gtest_discover_tests(${_name})
 endforeach ()
